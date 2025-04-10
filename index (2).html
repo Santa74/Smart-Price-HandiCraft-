@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Pricing Calculator</title>
+    <style>
+        /* CSS styles omitted for brevity - same as user provided */
+    </style>
+</head>
+<body>
+    <!-- HTML content omitted for brevity - same as user provided -->
+    <script>
+        function calculatePrice() {
+            const rawMaterials = parseFloat(document.getElementById('rawMaterials').value) || 0;
+            const manufacturingTime = parseFloat(document.getElementById('manufacturingTime').value) || 0;
+            const packaging = parseFloat(document.getElementById('packaging').value) || 0;
+            const shipping = parseFloat(document.getElementById('shipping').value) || 0;
+            const experience = parseFloat(document.getElementById('experience').value) || 0;
+
+            const baseCost = rawMaterials + packaging + shipping;
+            const hourlyRate = 10 + Math.random() * 5;
+            const timeCost = manufacturingTime * hourlyRate;
+            const experienceBonus = experience * 7.5;
+            const finalPrice = (baseCost + timeCost + experienceBonus) * 1.2;
+
+            document.getElementById('profitPrice').textContent = finalPrice.toFixed(2) + ' EGP';
+            document.getElementById('baseCost').textContent = baseCost.toFixed(2) + ' EGP';
+            document.getElementById('manufacturingCost').textContent = timeCost.toFixed(2) + ' EGP (' + hourlyRate.toFixed(2) + ' EGP/hour)';
+            document.getElementById('experienceBonus').textContent = '+' + experienceBonus.toFixed(2) + ' EGP';
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('priceDetails').style.display = 'block';
+
+            document.getElementById('result').style.animation = 'none';
+            setTimeout(() => {
+                document.getElementById('result').style.animation = 'slideUp 0.6s ease';
+            }, 10);
+        }
+    </script>
+</body>
+</html>
